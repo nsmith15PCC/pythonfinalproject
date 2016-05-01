@@ -43,7 +43,8 @@ class gradeFile (object):
         return (outtuple)
 
     def __str__(self):
-        for te
+        for result in self._results:
+            return ("Input: "+result[0]+"\nExpected Output: "+result[1]+"\nActual Output: "+result[2]+"\nActual in Expected:"+result[3])
 
 
 class allFiles(object):
@@ -62,9 +63,9 @@ class allFiles(object):
         self._timeout = timeout
 
     def createTest(self, inp, outp):
-        self._testcases.append(inp, outp)
-        for file in self._files:
-            gradeFile.setTestCases(self._testcases)
+        self._testcases.append((str(inp), str(outp)))
+        for item in self._files:\
+            item.setTestCases(self._testcases)
 
     def clearFiles(self):
         self._files.clear()
@@ -72,7 +73,7 @@ class allFiles(object):
     def clearTestcases(self):
         self._testcases.clear()
         for file in self._files:
-            gradeFile.setTestCases(self._testcases)
+            file.setTestCases(self._testcases)
 
     def runTests(self):
         for file in self._files:
