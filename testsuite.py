@@ -29,6 +29,11 @@ class gradeFile (object):
             self._results.append(self._IOtest(tuple[0], tuple[1]))
         return self._results
 
+    def getResults(self):
+        if len(self._results) == 0:
+            self.runTestcases()
+        return self._results
+
     def _IOtest(self, input, output):
         proc = Popen("python3.5 "+self._filename, stdin = PIPE, stdout=PIPE, stderr= PIPE, shell = True )
         try:
@@ -75,6 +80,7 @@ class allFiles(object):
 
     def clearFiles(self):
         self._files.clear()
+
 
     def clearTestcases(self):
         self._testcases.clear()
