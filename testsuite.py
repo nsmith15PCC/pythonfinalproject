@@ -27,7 +27,7 @@ class gradeFile (object):
     def runTestcases(self):
         for tuple in self._testcases:
             self._results.append(self._IOtest(tuple[0], tuple[1]))
-        print(self._results)
+        return self._results
 
     def _IOtest(self, input, output):
         proc = Popen("python3.5 "+self._filename, stdin = PIPE, stdout=PIPE, stderr= PIPE, shell = True )
@@ -62,6 +62,12 @@ class allFiles(object):
     def setTimeout(self, timeout):
         self._timeout = timeout
 
+    def createAlltests(self, listoftuples):
+        self._testcases.clear()
+        self._testcases = listoftuples
+        for item in self._files:\
+            item.setTestCases(self._testcases)
+
     def createTest(self, inp, outp):
         self._testcases.append((str(inp), str(outp)))
         for item in self._files:\
@@ -80,7 +86,7 @@ class allFiles(object):
             file.runTestcases()
         
 
-
-g = gradeFile("brokenprogram.py", runtime=5)
-g.setTestCases([(str(1),str(2)), (str(2),str(3)), (str(3),str(5))])
-g.runTestcases()
+#
+# g = gradeFile("brokenprogram.py", runtime=5)
+# g.setTestCases([(str(1),str(2)), (str(2),str(3)), (str(3),str(5))])
+# g.runTestcases()

@@ -7,6 +7,7 @@ class check_comments(object):
         filesplit = self._filename.split('.')
         self._name = filesplit[0]
         self._type = filesplit[1]
+        self.process()
 
     def process(self):
         f = open(self._filename, 'r')
